@@ -1,6 +1,5 @@
 import 'package:app_todo/app/modules/add_items/domain/entities/item_entity.dart';
 import 'package:flutter/material.dart';
-
 import 'package:app_todo/app/modules/add_items/presenter/page_todo/controller/check_controller.dart';
 import 'package:app_todo/app/theme/app_colors.dart';
 import 'package:app_todo/app/theme/app_text_style.dart';
