@@ -3,14 +3,14 @@ import 'package:app_todo/app/modules/add_lists/domain/entities/list_entity.dart'
 import 'package:app_todo/app/modules/add_lists/domain/repositories/list_repository.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class DeleteList {
+abstract class DeleteListUsecase {
   Future<Either<Failures, Unit>> call(ListEntity listEntity);
 }
 
-class DeleteListImpl implements DeleteList {
+class DeleteListUsecaseImpl implements DeleteListUsecase {
   final ListRepository _repository;
 
-  DeleteListImpl(this._repository);
+  DeleteListUsecaseImpl(this._repository);
   
   @override
   Future<Either<Failures, Unit>> call(ListEntity listEntity) async {
