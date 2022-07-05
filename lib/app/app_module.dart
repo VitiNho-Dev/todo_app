@@ -1,35 +1,77 @@
-import 'package:app_todo/app/modules/add_items/domain/repositories/todos_repository.dart';
-import 'package:app_todo/app/modules/add_items/domain/usecases/add_todo_usecase.dart';
-import 'package:app_todo/app/modules/add_items/domain/usecases/delete._todo_usecase.dart';
-import 'package:app_todo/app/modules/add_items/domain/usecases/get_todo.dart';
-import 'package:app_todo/app/modules/add_items/domain/usecases/update_todo.dart';
-import 'package:app_todo/app/modules/add_items/external/data_sources/todo_data_source_impl.dart';
-import 'package:app_todo/app/modules/add_items/infra/data_suorces/todo_data_source.dart';
-import 'package:app_todo/app/modules/add_items/infra/repositories/todo_repository_impl.dart';
-import 'package:app_todo/app/modules/add_items/presenter/page_todo/page_todo.dart';
-import 'package:app_todo/app/modules/add_items/presenter/todo_bloc/bloc/todo_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'modules/item_module/domain/repositories/add_item_repository.dart';
+import 'modules/item_module/domain/repositories/delete_item_repository.dart';
+import 'modules/item_module/domain/repositories/get_item_repository.dart';
+import 'modules/item_module/domain/repositories/update_item_repository.dart';
+import 'modules/item_module/domain/usecases/add_item_usecase.dart';
+import 'modules/item_module/domain/usecases/delete_item_usecase.dart';
+import 'modules/item_module/domain/usecases/get_item_usecase.dart';
+import 'modules/item_module/domain/usecases/update_item_usecase.dart';
+import 'modules/item_module/external/datasources/add_item_datasource_impl.dart';
+import 'modules/item_module/external/datasources/delete_item_datasource_impl.dart';
+import 'modules/item_module/external/datasources/get_item_datasource_impl.dart';
+import 'modules/item_module/external/datasources/update_item_datasource_impl.dart';
+import 'modules/item_module/infra/datasources/add_item_datasource.dart';
+import 'modules/item_module/infra/datasources/delete_item_datasource.dart';
+import 'modules/item_module/infra/datasources/get_item_datasource.dart';
+import 'modules/item_module/infra/datasources/update_item_datasource.dart';
+import 'modules/item_module/infra/repositories/add_item_repository_impl.dart';
+import 'modules/item_module/infra/repositories/delete_item_repository_impl.dart';
+import 'modules/item_module/infra/repositories/get_item_repository_impl.dart';
+import 'modules/item_module/infra/repositories/update_item_repository_impl.dart';
+import 'modules/item_module/presenter/item_bloc/bloc/item_bloc.dart';
+import 'modules/item_module/presenter/page_todo/page_todo.dart';
 
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.singleton<FirebaseFirestore>((i) => FirebaseFirestore.instance),
-        Bind.factory<TodoDataSource>(
-            (i) => TodoDataSourceImpl(i<FirebaseFirestore>())),
-        Bind.factory<TodoRepository>(
-            (i) => TodoRepositoryImpl(i<TodoDataSource>())),
-        Bind.factory<GetTodo>((i) => GetTodoImpl(i<TodoRepository>())),
-        Bind.factory<IAddTodoUsecase>(
-            (i) => AddTodoUsecase(i<TodoRepository>())),
-        Bind.factory<UpdateTodo>((i) => UpdateTodoImpl(i<TodoRepository>())),
-        Bind.factory<DeleteTodo>((i) => DeleteTodoImpl(i<TodoRepository>())),
-        Bind.factory((i) => TodoBloc(
-              i<GetTodo>(),
-              i<IAddTodoUsecase>(),
-              i<UpdateTodo>(),
-              i<DeleteTodo>(),
-            )),
+        Bind.factory<AddItemDatasource>(
+          (i) => AddItemDatasourceImpl(i<FirebaseFirestore>()),
+        ),
+        Bind.factory<DeleteItemDatasource>(
+          (i) => DeleteItemDatasourceImpl(i<FirebaseFirestore>()),
+        ),
+        Bind.factory<GetItemDatasource>(
+          (i) => GetItemDatasourceImpl(i<FirebaseFirestore>()),
+        ),
+        Bind.factory<UpdateItemDatasource>(
+          (i) => UpdateItemDatasourceImpl(i<FirebaseFirestore>()),
+        ),
+        Bind.factory<AddItemRepository>(
+          (i) => AddItemRepositoryImpl(i<AddItemDatasource>()),
+        ),
+        Bind.factory<DeleteItemRepository>(
+          (i) => DeleteItemRepositoryImpl(i<DeleteItemDatasource>()),
+        ),
+        Bind.factory<GetItemRepository>(
+          (i) => GetItemRepositoryImpl(i<GetItemDatasource>()),
+        ),
+        Bind.factory<UpdateItemRepository>(
+          (i) => UpdateItemRepositoryImpl(i<UpdateItemDatasource>()),
+        ),
+        Bind.factory<AddItemUsecase>(
+          (i) => AddItemUsecaseImpl(i<AddItemRepository>()),
+        ),
+        Bind.factory<DeleteItemUsecase>(
+          (i) => DeleteItemUsecaseImpl(i<DeleteItemRepository>()),
+        ),
+        Bind.factory<GetItemUsecase>(
+          (i) => GetItemUsecaseImpl(i<GetItemRepository>()),
+        ),
+        Bind.factory<UpdateItemUsecase>(
+          (i) => UpdateItemUsecaseImpl(i<UpdateItemRepository>()),
+        ),
+        Bind.factory(
+          (i) => ItemBloc(
+            i<AddItemUsecase>(),
+            i<DeleteItemUsecase>(),
+            i<GetItemUsecase>(),
+            i<UpdateItemUsecase>(),
+          ),
+        ),
       ];
 
   @override

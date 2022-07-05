@@ -1,7 +1,8 @@
-import 'package:app_todo/app/modules/add_items/domain/errors/todo_failures.dart';
 import 'package:app_todo/app/modules/add_lists/domain/entities/list_entity.dart';
+import 'package:app_todo/app/modules/add_lists/domain/errors/list_failures.dart';
 import 'package:app_todo/app/modules/add_lists/external/datasource/list_datasource_impl.dart';
 import 'package:app_todo/app/modules/add_lists/external/mapper/list_mapper.dart';
+import 'package:app_todo/app/modules/add_lists/infra/datasource/list_datasource.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -12,10 +13,15 @@ class FirebaseMock extends Mock implements FirebaseFirestore {
   
 }
 void main() async {
-  final _firebase = FirebaseMock();
-  final _listDatasource = ListDatasourceImpl(_firebase);
+  late FirebaseFirestore _firebase;
+  late ListDatasource _listDatasource;
 
-  group('Teste do ListDatasource', () {
+  setUpAll(() async {
+    _firebase = FirebaseMock();
+    _listDatasource = ListDatasourceImpl(_firebase);
+  });
+
+  group('Teste do getLists', () {
     test('[Datasource] - Deve retornar os dados do Firebase', () async* {
       when(() => _firebase.collection(any()).snapshots().map((query) {
         return query.docs.map((doc) {
@@ -26,6 +32,18 @@ void main() async {
       final _result = _listDatasource.getLists();
       expect(_result.isEmpty, true);
       expect(_result, isA<Stream<List<ListEntity>>>());
+    });
+
+    test('[Datasource] - Deve retornar um erro', () async* {
+      when(() => _firebase.collection(any()).snapshots().map((query) {
+        return query.docs.map((doc) {
+          return ListMapper.fromDocument(doc);
+        }).toList();
+      })).thenThrow((_) => DatasourceError('Error'));
+
+      final _result = _listDatasource.getLists();
+      expect(_result.isEmpty, false);
+      expect(_result, isA<FirebaseException>());
     });
   });
 }
