@@ -16,6 +16,6 @@ void main() {
   test('Deve retornar uma Lista de Items', () async* {
     when(() => repositoryMock.getItem()).thenAnswer((_) => Right(listStream));
     final result = getTodo();
-    expect(result.fold(id, id), isA<List<ItemEntity>>());
+    expect(result.fold(id, id), isA<List<Item>>());
   });
 }

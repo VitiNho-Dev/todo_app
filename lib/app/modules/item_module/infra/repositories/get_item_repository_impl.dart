@@ -12,7 +12,7 @@ class GetItemRepositoryImpl implements GetItemRepository {
   GetItemRepositoryImpl(this.getItemDatasource);
 
   @override
-  Either<Failures, Stream<List<ItemEntity>>> getItems() {
+  Either<Failures, Stream<List<Item>>> getItems() {
     try {
       var result = getItemDatasource.getItems();
       return Right(result);

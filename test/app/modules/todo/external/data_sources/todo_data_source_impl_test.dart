@@ -21,6 +21,6 @@ void main() {
         })).thenAnswer((_) => listStream);
 
     final result = dataSource.getItems();
-    expect(result, isA<Stream<List<ItemEntity>>>());
+    expect(result, isA<Stream<List<Item>>>());
   });
 }

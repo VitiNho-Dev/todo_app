@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../domain/entities/item_entity.dart';
 
 class TodoMapper {
-  static Map<String, dynamic> toJson(ItemEntity item) {
+  static Map<String, dynamic> toJson(Item item) {
     return {
       'title': item.title,
       'check': item.check,
@@ -11,10 +11,10 @@ class TodoMapper {
     };
   }
 
-  static ItemEntity fromDocument(
+  static Item fromDocument(
     QueryDocumentSnapshot<Map<String, dynamic>> doc,
   ) {
-    return ItemEntity(
+    return Item(
       title: doc['title'] ?? '',
       check: doc['check'] ?? '',
       id: doc.id,

@@ -5,7 +5,7 @@ import '../errors/items_failures.dart';
 import '../repositories/delete_item_repository.dart';
 
 abstract class DeleteItemUsecase {
-  Future<Either<Failures, Unit>> call(ItemEntity itemEntity);
+  Future<Either<Failures, Unit>> call(Item item);
 }
 
 class DeleteItemUsecaseImpl implements DeleteItemUsecase {
@@ -14,7 +14,7 @@ class DeleteItemUsecaseImpl implements DeleteItemUsecase {
   DeleteItemUsecaseImpl(this.deleteItemRepository);
 
   @override
-  Future<Either<Failures, Unit>> call(ItemEntity itemEntity) async {
-    return await deleteItemRepository.deleteItem(itemEntity);
+  Future<Either<Failures, Unit>> call(Item item) async {
+    return await deleteItemRepository.deleteItem(item);
   }
 }

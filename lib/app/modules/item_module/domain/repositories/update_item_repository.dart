@@ -4,5 +4,5 @@ import '../entities/item_entity.dart';
 import '../errors/items_failures.dart';
 
 abstract class UpdateItemRepository {
-  Future<Either<Failures, Unit>> updateItem(ItemEntity itemEntity);
+  Future<Either<Failures, Unit>> updateItem(Item item);
 }

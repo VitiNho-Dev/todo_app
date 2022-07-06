@@ -36,17 +36,17 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
   ) : super(InitialBlocState()) {
     on<RefreshItemBlocEvent>(
       (event, emit) {
-        if (event.listItemEntity.isEmpty) {
+        if (event.listItem.isEmpty) {
           return emit(InitialBlocState());
         }
-        emit(SuccessBlocState(event.listItemEntity));
+        emit(SuccessBlocState(event.listItem));
       },
     );
 
     on<AddItemBlocEvent>(
       (event, emit) async {
         emit(LoadingBlocState());
-        final result = await addItemUsecase(event.itemEntity);
+        final result = await addItemUsecase(event.item);
         result.fold(
           (l) => emit(ErrorBlocState('Falhou')),
           (r) => r,
@@ -56,7 +56,7 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
 
     on<UpdateItemBlocEvent>(
       (event, emit) async {
-        final result = await updateItemUsecase(event.itemEntity);
+        final result = await updateItemUsecase(event.item);
         result.fold(
           (l) => emit(ErrorBlocState('Falhou')),
           (r) => r,
@@ -66,7 +66,7 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
 
     on<DeleteItemBlocEvent>(
       (event, emit) async {
-        final result = await deleteItemUsecase(event.itemEntity);
+        final result = await deleteItemUsecase(event.item);
         result.fold(
           (l) => emit(ErrorBlocState('Falhou')),
           (r) => r,

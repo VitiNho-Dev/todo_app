@@ -5,7 +5,7 @@ import '../errors/items_failures.dart';
 import '../repositories/get_item_repository.dart';
 
 abstract class GetItemUsecase {
-  Either<Failures, Stream<List<ItemEntity>>> call();
+  Either<Failures, Stream<List<Item>>> call();
 }
 
 class GetItemUsecaseImpl implements GetItemUsecase {
@@ -14,7 +14,7 @@ class GetItemUsecaseImpl implements GetItemUsecase {
   GetItemUsecaseImpl(this.getItemRepository);
 
   @override
-  Either<Failures, Stream<List<ItemEntity>>> call() {
+  Either<Failures, Stream<List<Item>>> call() {
     return getItemRepository.getItems();
   }
 }

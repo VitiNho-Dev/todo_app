@@ -6,7 +6,7 @@ import '../../../domain/entities/item_entity.dart';
 import '../controller/check_controller.dart';
 
 class CustomListItems extends StatelessWidget {
-  final List<ItemEntity> ictemCount;
+  final List<Item> ictemCount;
   final String title;
   final bool check;
   final void Function()? onTap;

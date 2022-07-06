@@ -5,7 +5,7 @@ import '../errors/items_failures.dart';
 import '../repositories/add_item_repository.dart';
 
 abstract class AddItemUsecase {
-  Future<Either<Failures, Unit>> call(ItemEntity itemEntity);
+  Future<Either<Failures, Unit>> call(Item item);
 }
 
 class AddItemUsecaseImpl implements AddItemUsecase {
@@ -14,7 +14,7 @@ class AddItemUsecaseImpl implements AddItemUsecase {
   AddItemUsecaseImpl(this.addItemRepository);
 
   @override
-  Future<Either<Failures, Unit>> call(ItemEntity itemEntity) async {
-    return await addItemRepository.addItem(itemEntity);
+  Future<Either<Failures, Unit>> call(Item item) async {
+    return await addItemRepository.addItem(item);
   }
 }

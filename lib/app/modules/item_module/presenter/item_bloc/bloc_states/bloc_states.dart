@@ -5,7 +5,7 @@ abstract class ItemBlocState {}
 class InitialBlocState extends ItemBlocState {}
 
 class SuccessBlocState extends ItemBlocState {
-  final List<ItemEntity> items;
+  final List<Item> items;
 
   SuccessBlocState(this.items);
 }

@@ -10,7 +10,7 @@ class GetItemDatasourceImpl implements GetItemDatasource {
   GetItemDatasourceImpl(this.firebaseFirestore);
 
   @override
-  Stream<List<ItemEntity>> getItems() {
+  Stream<List<Item>> getItems() {
     return firebaseFirestore
         .collection('Items')
         .orderBy('create_at', descending: false)

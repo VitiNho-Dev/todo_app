@@ -11,9 +11,9 @@ class DeleteItemRepositoryImpl implements DeleteItemRepository {
   DeleteItemRepositoryImpl(this.deleteItemDatasource);
 
   @override
-  Future<Either<Failures, Unit>> deleteItem(ItemEntity itemEntity) async {
+  Future<Either<Failures, Unit>> deleteItem(Item item) async {
     try {
-      await deleteItemDatasource.deleteItem(itemEntity);
+      await deleteItemDatasource.deleteItem(item);
       return const Right(unit);
     } on Failures catch (e) {
       return Left(e);

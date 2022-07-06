@@ -4,5 +4,5 @@ import '../entities/item_entity.dart';
 import '../errors/items_failures.dart';
 
 abstract class GetItemRepository {
-  Either<Failures, Stream<List<ItemEntity>>> getItems();
+  Either<Failures, Stream<List<Item>>> getItems();
 }

@@ -11,9 +11,9 @@ class AddItemDatasourceImpl implements AddItemDatasource {
   AddItemDatasourceImpl(this.firebaseFirestore);
 
   @override
-  Future<Unit> addItem(ItemEntity itemEntity) async {
+  Future<Unit> addItem(Item item) async {
     await firebaseFirestore.collection('Items').add(
-          TodoMapper.toJson(itemEntity),
+          TodoMapper.toJson(item),
         );
     return unit;
   }

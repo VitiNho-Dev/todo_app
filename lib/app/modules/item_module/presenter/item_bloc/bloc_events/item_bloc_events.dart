@@ -5,25 +5,25 @@ abstract class ItemBlocEvent {}
 class GetItemBlocEvent extends ItemBlocEvent {}
 
 class RefreshItemBlocEvent extends ItemBlocEvent {
-  final List<ItemEntity> listItemEntity;
+  final List<Item> listItem;
 
-  RefreshItemBlocEvent(this.listItemEntity);
+  RefreshItemBlocEvent(this.listItem);
 }
 
 class AddItemBlocEvent extends ItemBlocEvent {
-  final ItemEntity itemEntity;
+  final Item item;
 
-  AddItemBlocEvent(this.itemEntity);
+  AddItemBlocEvent(this.item);
 }
 
 class UpdateItemBlocEvent extends ItemBlocEvent {
-  final ItemEntity itemEntity;
+  final Item item;
 
-  UpdateItemBlocEvent(this.itemEntity);
+  UpdateItemBlocEvent(this.item);
 }
 
 class DeleteItemBlocEvent extends ItemBlocEvent {
-  final ItemEntity itemEntity;
+  final Item item;
 
-  DeleteItemBlocEvent(this.itemEntity);
+  DeleteItemBlocEvent(this.item);
 }

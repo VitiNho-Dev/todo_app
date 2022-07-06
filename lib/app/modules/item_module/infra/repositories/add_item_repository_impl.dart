@@ -11,9 +11,9 @@ class AddItemRepositoryImpl implements AddItemRepository {
   AddItemRepositoryImpl(this.addItemDatasource);
 
   @override
-  Future<Either<Failures, Unit>> addItem(ItemEntity itemEntity) async {
+  Future<Either<Failures, Unit>> addItem(Item item) async {
     try {
-      await addItemDatasource.addItem(itemEntity);
+      await addItemDatasource.addItem(item);
       return const Right(unit);
     } on Failures catch (e) {
       return Left(e);

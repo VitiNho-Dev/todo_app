@@ -19,6 +19,6 @@ void main() {
     });
 
     final result = repository.getItem();
-    expect(result.fold(id, id), isA<List<ItemEntity>>());
+    expect(result.fold(id, id), isA<List<Item>>());
   });
 }

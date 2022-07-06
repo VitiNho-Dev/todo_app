@@ -100,7 +100,7 @@ class _PageTodoState extends State<PageTodo> {
                             color: AppColors.appBarTextColor,
                           ),
                         ),
-                        key: ValueKey<ItemEntity>(result[index]),
+                        key: ValueKey<Item>(result[index]),
                         onDismissed: (DismissDirection direction) {
                           bloc.add(
                             DeleteItemBlocEvent(result[index]),
@@ -116,7 +116,7 @@ class _PageTodoState extends State<PageTodo> {
                             item.check = !item.check;
                             bloc.add(
                               UpdateItemBlocEvent(
-                                ItemEntity(
+                                Item(
                                   title: item.title,
                                   check: item.check,
                                   id: item.id,
@@ -167,7 +167,7 @@ class _PageTodoState extends State<PageTodo> {
                       controller.clear();
                       bloc.add(
                         AddItemBlocEvent(
-                          ItemEntity(
+                          Item(
                             title: title,
                             check: false,
                             id: '',
