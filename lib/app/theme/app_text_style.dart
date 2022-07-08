@@ -1,6 +1,7 @@
-import 'package:app_todo/app/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'app_colors.dart';
 
 class AppTextStyle {
   static final textAppBar = GoogleFonts.ubuntu(

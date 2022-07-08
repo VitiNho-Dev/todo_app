@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../components/custom_app_bar_widget.dart';
-import '../../../../components/custom_floating_action_button.dart';
-import '../../../../components/custom_show_dialog_widget.dart';
+import '../../../../shared/components/custom_app_bar_widget.dart';
+import '../../../../shared/components/custom_floating_action_button.dart';
+import '../../../../shared/components/custom_show_dialog_widget.dart';
 import '../../../../theme/app_colors.dart';
 import '../../../../theme/app_text_style.dart';
 import '../../domain/entities/item_entity.dart';
