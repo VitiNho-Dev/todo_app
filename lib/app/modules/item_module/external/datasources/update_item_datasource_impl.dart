@@ -11,10 +11,11 @@ class UpdateItemDatasourceImpl implements UpdateItemDatasource {
   UpdateItemDatasourceImpl(this.firebaseFirestore);
 
   @override
-  Future<Unit> updateItem(Item Item) async {
-    await firebaseFirestore.collection('Items').doc(Item.id).update(
-          TodoMapper.toJson(Item),
-        );
+  Future<Unit> updateItem(Item item) async {
+    await firebaseFirestore
+        .collection('Items')
+        .doc(item.id)
+        .update(TodoMapper.toJson(item));
     return unit;
   }
 }

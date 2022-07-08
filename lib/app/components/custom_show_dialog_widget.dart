@@ -1,9 +1,9 @@
-import 'package:app_todo/app/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:app_todo/app/modules/add_items/presenter/page_todo/widgets/custom_text_button_widget.dart';
-import 'package:app_todo/app/theme/app_colors.dart';
+import '../modules/item_module/presenter/page_todo/widgets/custom_text_button_widget.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_text_style.dart';
 
 class CustomShowBottomSheetWidget extends StatelessWidget {
   final String text;

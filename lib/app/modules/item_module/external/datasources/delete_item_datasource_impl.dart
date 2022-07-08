@@ -10,8 +10,8 @@ class DeleteItemDatasourceImpl implements DeleteItemDatasource {
   DeleteItemDatasourceImpl(this.firebaseFirestore);
 
   @override
-  Future<Unit> deleteItem(Item Item) async {
-    await firebaseFirestore.collection('Items').doc(Item.id).delete();
+  Future<Unit> deleteItem(Item item) async {
+    await firebaseFirestore.collection('Items').doc(item.id).delete();
     return unit;
   }
 }
