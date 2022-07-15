@@ -2,8 +2,6 @@ import '../../../domain/entities/item_entity.dart';
 
 abstract class ItemBlocEvent {}
 
-class GetItemBlocEvent extends ItemBlocEvent {}
-
 class RefreshItemBlocEvent extends ItemBlocEvent {
   final List<Item> listItem;
 

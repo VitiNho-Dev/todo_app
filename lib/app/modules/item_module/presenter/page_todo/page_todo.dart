@@ -22,17 +22,18 @@ class PageTodo extends StatefulWidget {
 
 class _PageTodoState extends State<PageTodo> {
   final bloc = Modular.get<ItemBloc>();
+  final String title = '';
+  late TextEditingController controllerTitle;
 
   @override
   void initState() {
     super.initState();
     bloc.initState();
+    controllerTitle = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
-    String title = '';
-    final controller = TextEditingController();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: const CustomAppBar(),
@@ -72,70 +73,73 @@ class _PageTodoState extends State<PageTodo> {
               child: Text('Aconteceu um erro!'),
             );
           }
-          var result = (state as SuccessBlocState).items;
-          return Padding(
-            padding: const EdgeInsets.only(left: 32, top: 24, right: 32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Compras',
-                  style: AppTextStyle.titleBody,
-                ),
-                const SizedBox(height: 12),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: result.length,
-                    itemBuilder: (context, index) {
-                      var item = result[index];
-                      return Dismissible(
-                        direction: DismissDirection.startToEnd,
-                        background: Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          padding: const EdgeInsets.only(left: 6),
-                          color: const Color(0xFFF44336),
-                          alignment: Alignment.centerLeft,
-                          child: const Icon(
-                            Icons.cancel,
-                            color: AppColors.appBarTextColor,
-                          ),
-                        ),
-                        key: ValueKey<Item>(result[index]),
-                        onDismissed: (DismissDirection direction) {
-                          bloc.add(
-                            DeleteItemBlocEvent(result[index]),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Item excluido com sucesso!'),
+          if (state is SuccessBlocState) {
+            var result = state.items;
+            return Padding(
+              padding: const EdgeInsets.only(left: 32, top: 24, right: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Compras',
+                    style: AppTextStyle.titleBody,
+                  ),
+                  const SizedBox(height: 12),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: result.length,
+                      itemBuilder: (context, index) {
+                        var item = result[index];
+                        return Dismissible(
+                          direction: DismissDirection.startToEnd,
+                          background: Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.only(left: 6),
+                            color: const Color(0xFFF44336),
+                            alignment: Alignment.centerLeft,
+                            child: const Icon(
+                              Icons.cancel,
+                              color: AppColors.appBarTextColor,
                             ),
-                          );
-                        },
-                        child: CustomListItems(
-                          onTap: () {
-                            item.check = !item.check;
+                          ),
+                          key: ValueKey<Item>(result[index]),
+                          onDismissed: (DismissDirection direction) {
                             bloc.add(
-                              UpdateItemBlocEvent(
-                                Item(
-                                  title: item.title,
-                                  check: item.check,
-                                  id: item.id,
-                                  createAt: item.createAt,
-                                ),
+                              DeleteItemBlocEvent(result[index]),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Item excluido com sucesso!'),
                               ),
                             );
                           },
-                          ictemCount: result,
-                          title: item.title,
-                          check: item.check,
-                        ),
-                      );
-                    },
+                          child: CustomListItems(
+                            onTap: () {
+                              item.check = !item.check;
+                              bloc.add(
+                                UpdateItemBlocEvent(
+                                  Item(
+                                    title: item.title,
+                                    check: item.check,
+                                    id: item.id,
+                                    createAt: item.createAt,
+                                  ),
+                                ),
+                              );
+                            },
+                            ictemCount: result,
+                            title: item.title,
+                            check: item.check,
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          }
+          return const SizedBox.shrink();
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -159,16 +163,16 @@ class _PageTodoState extends State<PageTodo> {
                   ),
                   child: CustomShowBottomSheetWidget(
                     text: 'Adicione um item na sua lista',
-                    controller: controller,
+                    controller: controllerTitle,
                     onChanged: (value) {
-                      title = value;
+                      controllerTitle.text = value;
                     },
                     addItem: () {
-                      controller.clear();
+                      controllerTitle.clear();
                       bloc.add(
                         AddItemBlocEvent(
                           Item(
-                            title: title,
+                            title: controllerTitle.text,
                             check: false,
                             id: '',
                             createAt: DateTime.now(),
