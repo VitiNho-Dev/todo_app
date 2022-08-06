@@ -6,13 +6,13 @@ import '../../infra/datasources/add_item_datasource.dart';
 import '../mapper/todo_mapper.dart';
 
 class AddItemDatasourceImpl implements AddItemDatasource {
-  final FirebaseFirestore firebaseFirestore;
+  final FirebaseFirestore _firebaseFirestore;
 
-  AddItemDatasourceImpl(this.firebaseFirestore);
+  AddItemDatasourceImpl(this._firebaseFirestore);
 
   @override
   Future<Unit> addItem(Item item) async {
-    await firebaseFirestore.collection('Items').add(
+    await _firebaseFirestore.collection('Items').add(
           TodoMapper.toJson(item),
         );
     return unit;

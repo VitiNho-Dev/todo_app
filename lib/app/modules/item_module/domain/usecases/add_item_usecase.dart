@@ -9,12 +9,12 @@ abstract class AddItemUsecase {
 }
 
 class AddItemUsecaseImpl implements AddItemUsecase {
-  final AddItemRepository addItemRepository;
+  final AddItemRepository _addItemRepository;
 
-  AddItemUsecaseImpl(this.addItemRepository);
+  AddItemUsecaseImpl(this._addItemRepository);
 
   @override
   Future<Either<Failures, Unit>> call(Item item) async {
-    return await addItemRepository.addItem(item);
+    return await _addItemRepository.addItem(item);
   }
 }

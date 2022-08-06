@@ -7,14 +7,14 @@ import '../../domain/repositories/get_item_repository.dart';
 import '../datasources/get_item_datasource.dart';
 
 class GetItemRepositoryImpl implements GetItemRepository {
-  final GetItemDatasource getItemDatasource;
+  final GetItemDatasource _getItemDatasource;
 
-  GetItemRepositoryImpl(this.getItemDatasource);
+  GetItemRepositoryImpl(this._getItemDatasource);
 
   @override
   Either<Failures, Stream<List<Item>>> getItems() {
     try {
-      var result = getItemDatasource.getItems();
+      var result = _getItemDatasource.getItems();
       return Right(result);
     } on Failures catch (e) {
       return Left(e);

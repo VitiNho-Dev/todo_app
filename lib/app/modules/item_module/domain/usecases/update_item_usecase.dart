@@ -9,12 +9,12 @@ abstract class UpdateItemUsecase {
 }
 
 class UpdateItemUsecaseImpl implements UpdateItemUsecase {
-  final UpdateItemRepository updateItemRepository;
+  final UpdateItemRepository _updateItemRepository;
 
-  UpdateItemUsecaseImpl(this.updateItemRepository);
+  UpdateItemUsecaseImpl(this._updateItemRepository);
 
   @override
   Future<Either<Failures, Unit>> call(Item item) async {
-    return await updateItemRepository.updateItem(item);
+    return await _updateItemRepository.updateItem(item);
   }
 }

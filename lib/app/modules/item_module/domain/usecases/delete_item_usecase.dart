@@ -9,12 +9,12 @@ abstract class DeleteItemUsecase {
 }
 
 class DeleteItemUsecaseImpl implements DeleteItemUsecase {
-  final DeleteItemRepository deleteItemRepository;
+  final DeleteItemRepository _deleteItemRepository;
 
-  DeleteItemUsecaseImpl(this.deleteItemRepository);
+  DeleteItemUsecaseImpl(this._deleteItemRepository);
 
   @override
   Future<Either<Failures, Unit>> call(Item item) async {
-    return await deleteItemRepository.deleteItem(item);
+    return await _deleteItemRepository.deleteItem(item);
   }
 }

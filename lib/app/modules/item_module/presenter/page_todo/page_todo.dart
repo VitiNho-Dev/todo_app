@@ -12,6 +12,7 @@ import '../item_bloc/bloc/item_bloc.dart';
 import '../item_bloc/bloc_events/item_bloc_events.dart';
 import '../item_bloc/bloc_states/bloc_states.dart';
 import 'widgets/custom_list_items.dart';
+import 'widgets/initial_content_widget.dart';
 
 class PageTodo extends StatefulWidget {
   const PageTodo({Key? key}) : super(key: key);
@@ -23,13 +24,12 @@ class PageTodo extends StatefulWidget {
 class _PageTodoState extends State<PageTodo> {
   final bloc = Modular.get<ItemBloc>();
   final String title = '';
-  late TextEditingController controllerTitle;
+  final controllerTitle = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     bloc.initState();
-    controllerTitle = TextEditingController();
   }
 
   @override
@@ -41,27 +41,7 @@ class _PageTodoState extends State<PageTodo> {
         bloc: bloc,
         builder: (context, state) {
           if (state is InitialBlocState) {
-            return Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.20,
-                width: MediaQuery.of(context).size.width * 0.60,
-                child: Column(
-                  children: [
-                    Text(
-                      'Você ainda não tem items 🙁',
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.titleBodyInitialState,
-                    ),
-                    const SizedBox(height: 32),
-                    Text(
-                      'Clique no botão abaixo para adicionar um item',
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.titleBody,
-                    ),
-                  ],
-                ),
-              ),
-            );
+            return const InitialContent();
           }
           if (state is LoadingBlocState) {
             return const Center(
