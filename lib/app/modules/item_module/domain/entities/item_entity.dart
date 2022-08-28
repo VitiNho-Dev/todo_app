@@ -1,6 +1,6 @@
 class Item {
   final String title;
-  late final bool check;
+  late bool check;
   final String id;
   final DateTime createAt;
 
