@@ -6,14 +6,14 @@ import '../../domain/repositories/delete_item_repository.dart';
 import '../datasources/delete_item_datasource.dart';
 
 class DeleteItemRepositoryImpl implements DeleteItemRepository {
-  final DeleteItemDatasource deleteItemDatasource;
+  final DeleteItemDatasource _deleteItemDatasource;
 
-  DeleteItemRepositoryImpl(this.deleteItemDatasource);
+  DeleteItemRepositoryImpl(this._deleteItemDatasource);
 
   @override
   Future<Either<Failures, Unit>> deleteItem(Item item) async {
     try {
-      await deleteItemDatasource.deleteItem(item);
+      await _deleteItemDatasource.deleteItem(item);
       return const Right(unit);
     } on Failures catch (e) {
       return Left(e);

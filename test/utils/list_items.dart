@@ -1,4 +1,4 @@
-import 'package:app_todo/app/modules/add_items/domain/entities/item_entity.dart';
+import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dart';
 
 Stream<List<Item>> listStream = [
   Item(

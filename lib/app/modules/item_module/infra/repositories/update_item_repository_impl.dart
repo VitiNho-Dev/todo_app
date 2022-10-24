@@ -6,14 +6,14 @@ import '../../domain/repositories/update_item_repository.dart';
 import '../datasources/update_item_datasource.dart';
 
 class UpdateItemRepositoryImpl implements UpdateItemRepository {
-  final UpdateItemDatasource updateItemDatasource;
+  final UpdateItemDatasource _updateItemDatasource;
 
-  UpdateItemRepositoryImpl(this.updateItemDatasource);
+  UpdateItemRepositoryImpl(this._updateItemDatasource);
 
   @override
   Future<Either<Failures, Unit>> updateItem(Item item) async {
     try {
-      await updateItemDatasource.updateItem(item);
+      await _updateItemDatasource.updateItem(item);
       return const Right(unit);
     } on Failures catch (e) {
       return Left(e);

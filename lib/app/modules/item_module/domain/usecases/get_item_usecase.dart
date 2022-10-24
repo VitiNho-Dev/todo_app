@@ -9,12 +9,12 @@ abstract class GetItemUsecase {
 }
 
 class GetItemUsecaseImpl implements GetItemUsecase {
-  final GetItemRepository getItemRepository;
+  final GetItemRepository _getItemRepository;
 
-  GetItemUsecaseImpl(this.getItemRepository);
+  GetItemUsecaseImpl(this._getItemRepository);
 
   @override
   Either<Failures, Stream<List<Item>>> call() {
-    return getItemRepository.getItems();
+    return _getItemRepository.getItems();
   }
 }

@@ -5,13 +5,13 @@ import '../../domain/entities/item_entity.dart';
 import '../../infra/datasources/delete_item_datasource.dart';
 
 class DeleteItemDatasourceImpl implements DeleteItemDatasource {
-  final FirebaseFirestore firebaseFirestore;
+  final FirebaseFirestore _firebaseFirestore;
 
-  DeleteItemDatasourceImpl(this.firebaseFirestore);
+  DeleteItemDatasourceImpl(this._firebaseFirestore);
 
   @override
-  Future<Unit> deleteItem(Item Item) async {
-    await firebaseFirestore.collection('Items').doc(Item.id).delete();
+  Future<Unit> deleteItem(Item item) async {
+    await _firebaseFirestore.collection('Items').doc(item.id).delete();
     return unit;
   }
 }
