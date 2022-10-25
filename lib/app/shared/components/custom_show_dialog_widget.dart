@@ -9,14 +9,14 @@ class CustomShowBottomSheetWidget extends StatelessWidget {
   final String text;
   final void Function() addItem;
   final void Function(String)? onChanged;
-  final TextEditingController? controller;
+  final TextEditingController controller;
 
   const CustomShowBottomSheetWidget({
     Key? key,
     required this.text,
     required this.addItem,
+    required this.controller,
     this.onChanged,
-    this.controller,
   }) : super(key: key);
 
   @override

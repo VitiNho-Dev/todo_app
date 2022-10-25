@@ -10,8 +10,6 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
-      darkTheme: ThemeData.dark(),
-      theme: ThemeData.light(),
     );
   }
 }

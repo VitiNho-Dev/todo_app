@@ -28,6 +28,7 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.singleton<FirebaseFirestore>((i) => FirebaseFirestore.instance),
+        // Datasource
         Bind.factory<AddItemDatasource>(
           (i) => AddItemDatasourceImpl(i<FirebaseFirestore>()),
         ),
@@ -40,6 +41,7 @@ class AppModule extends Module {
         Bind.factory<UpdateItemDatasource>(
           (i) => UpdateItemDatasourceImpl(i<FirebaseFirestore>()),
         ),
+        // Repository
         Bind.factory<AddItemRepository>(
           (i) => AddItemRepositoryImpl(i<AddItemDatasource>()),
         ),
@@ -52,6 +54,7 @@ class AppModule extends Module {
         Bind.factory<UpdateItemRepository>(
           (i) => UpdateItemRepositoryImpl(i<UpdateItemDatasource>()),
         ),
+        // Usecase
         Bind.factory<AddItemUsecase>(
           (i) => AddItemUsecaseImpl(i<AddItemRepository>()),
         ),
@@ -64,6 +67,7 @@ class AppModule extends Module {
         Bind.factory<UpdateItemUsecase>(
           (i) => UpdateItemUsecaseImpl(i<UpdateItemRepository>()),
         ),
+        // Bloc
         Bind.factory(
           (i) => ItemBloc(
             i<AddItemUsecase>(),
