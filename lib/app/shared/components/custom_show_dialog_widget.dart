@@ -8,7 +8,6 @@ import '../../theme/app_text_style.dart';
 class CustomShowBottomSheetWidget extends StatelessWidget {
   final String text;
   final void Function() addItem;
-  final void Function(String)? onChanged;
   final TextEditingController controller;
 
   const CustomShowBottomSheetWidget({
@@ -16,7 +15,6 @@ class CustomShowBottomSheetWidget extends StatelessWidget {
     required this.text,
     required this.addItem,
     required this.controller,
-    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -30,14 +28,16 @@ class CustomShowBottomSheetWidget extends StatelessWidget {
           const SizedBox(height: 8),
           TextField(
             controller: controller,
-            onChanged: onChanged,
           ),
           const SizedBox(height: 32),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButtonWidget(
-                onTap: () => Modular.to.pop(),
+                onTap: () {
+                  Modular.to.pop();
+                  controller.clear();
+                },
                 title: 'Cancelar',
                 style: AppTextStyle.textButton2,
                 border: Border.all(

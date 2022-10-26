@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'modules/item_module/domain/repositories/add_item_repository.dart';
-import 'modules/item_module/domain/repositories/delete_item_repository.dart';
-import 'modules/item_module/domain/repositories/get_item_repository.dart';
-import 'modules/item_module/domain/repositories/update_item_repository.dart';
-import 'modules/item_module/domain/usecases/add_item_usecase.dart';
-import 'modules/item_module/domain/usecases/delete_item_usecase.dart';
-import 'modules/item_module/domain/usecases/get_item_usecase.dart';
-import 'modules/item_module/domain/usecases/update_item_usecase.dart';
+import 'modules/item_module/domain/repositories/item_repositories/add_item_repository.dart';
+import 'modules/item_module/domain/repositories/item_repositories/delete_item_repository.dart';
+import 'modules/item_module/domain/repositories/item_repositories/get_item_repository.dart';
+import 'modules/item_module/domain/repositories/item_repositories/update_item_repository.dart';
+import 'modules/item_module/domain/usecases/item_usecases/add_item_usecase.dart';
+import 'modules/item_module/domain/usecases/item_usecases/delete_item_usecase.dart';
+import 'modules/item_module/domain/usecases/item_usecases/get_item_usecase.dart';
+import 'modules/item_module/domain/usecases/item_usecases/update_item_usecase.dart';
 import 'modules/item_module/external/datasources/add_item_datasource_impl.dart';
 import 'modules/item_module/external/datasources/delete_item_datasource_impl.dart';
 import 'modules/item_module/external/datasources/get_item_datasource_impl.dart';

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../entities/item_entity.dart';
-import '../errors/items_failures.dart';
-import '../repositories/update_item_repository.dart';
+import '../../entities/item_entity.dart';
+import '../../errors/items_failures.dart';
+import '../../repositories/item_repositories/update_item_repository.dart';
 
 abstract class UpdateItemUsecase {
   Future<Either<Failures, Unit>> call(Item item);

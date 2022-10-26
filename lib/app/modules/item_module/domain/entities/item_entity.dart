@@ -1,13 +1,13 @@
 class Item {
-  final String title;
-  late bool check;
   final String id;
+  final String title;
+  final bool check;
   final DateTime createAt;
 
-  Item({
-    required this.title,
-    required this.check,
+  const Item({
     required this.id,
+    required this.title,
+    this.check = false,
     required this.createAt,
   });
 }

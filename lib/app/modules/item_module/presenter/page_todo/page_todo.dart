@@ -23,7 +23,6 @@ class PageTodo extends StatefulWidget {
 
 class _PageTodoState extends State<PageTodo> {
   final bloc = Modular.get<ItemBloc>();
-  final String title = '';
   final controllerTitle = TextEditingController();
 
   @override
@@ -95,7 +94,7 @@ class _PageTodoState extends State<PageTodo> {
                           },
                           child: CustomListItems(
                             onTap: () {
-                              item.check = !item.check;
+                              //item.check = !item.check;
                               bloc.add(
                                 UpdateItemBlocEvent(
                                   Item(
@@ -144,21 +143,17 @@ class _PageTodoState extends State<PageTodo> {
                   child: CustomShowBottomSheetWidget(
                     text: 'Adicione um item na sua lista',
                     controller: controllerTitle,
-                    onChanged: (value) {
-                      controllerTitle.text = value;
-                    },
                     addItem: () {
-                      controllerTitle.clear();
                       bloc.add(
                         AddItemBlocEvent(
                           Item(
                             title: controllerTitle.text,
-                            check: false,
                             id: '',
                             createAt: DateTime.now(),
                           ),
                         ),
                       );
+                      controllerTitle.clear();
                     },
                   ),
                 );

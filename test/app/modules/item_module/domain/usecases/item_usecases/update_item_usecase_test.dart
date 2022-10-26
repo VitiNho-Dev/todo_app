@@ -1,7 +1,7 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dart';
 import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
-import 'package:app_todo/app/modules/item_module/domain/repositories/update_item_repository.dart';
-import 'package:app_todo/app/modules/item_module/domain/usecases/update_item_usecase.dart';
+import 'package:app_todo/app/modules/item_module/domain/repositories/item_repositories/update_item_repository.dart';
+import 'package:app_todo/app/modules/item_module/domain/usecases/item_usecases/update_item_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -13,7 +13,6 @@ void main() {
   late UpdateItemUsecase updateItemUsecase;
   final _item = Item(
     title: 'Item teste',
-    check: false,
     id: '123',
     createAt: DateTime.now(),
   );
@@ -24,8 +23,8 @@ void main() {
     registerFallbackValue(_item);
   });
 
-  group('Update Item Usecase test', () {
-    test('Deve atualizar um item no Firebase', () async {
+  group('Update Item Usecase test:', () {
+    test('Should update an item on Firebase', () async {
       when(
         () => updateItemRepository.updateItem(any()),
       ).thenAnswer((invocation) async => right(unit));
@@ -35,8 +34,7 @@ void main() {
       expect(_result.fold((l) => l, (r) => r), isA<Unit>());
     });
 
-    test('Deve retornar um erro ao tentar atualizar um item no Firebase',
-        () async {
+    test('Should return on error when update an item of Firebase', () async {
       when(
         () => updateItemRepository.updateItem(any()),
       ).thenAnswer((invocation) async => left(NoDataFound()));

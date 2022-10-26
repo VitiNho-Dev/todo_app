@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../domain/entities/item_entity.dart';
 import '../../domain/errors/items_failures.dart';
-import '../../domain/repositories/add_item_repository.dart';
+import '../../domain/repositories/item_repositories/add_item_repository.dart';
 import '../datasources/add_item_datasource.dart';
 
 class AddItemRepositoryImpl implements AddItemRepository {

@@ -1,12 +1,12 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dart';
 import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
-import 'package:app_todo/app/modules/item_module/domain/repositories/get_item_repository.dart';
-import 'package:app_todo/app/modules/item_module/domain/usecases/get_item_usecase.dart';
+import 'package:app_todo/app/modules/item_module/domain/repositories/item_repositories/get_item_repository.dart';
+import 'package:app_todo/app/modules/item_module/domain/usecases/item_usecases/get_item_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../utils/list_items.dart';
+import '../../../../../../utils/list_items.dart';
 
 class GetItemRepositoryMock extends Mock implements GetItemRepository {}
 
@@ -19,8 +19,8 @@ void main() {
     getItemUsecase = GetItemUsecaseImpl(getItemRepository);
   });
 
-  group('Get Item Usecase test', () {
-    test('Deve trazer uma lista de items do Firebase', () async* {
+  group('Get Item Usecase test:', () {
+    test('Should return an item of Firebase', () async* {
       when(
         () => getItemRepository.getItems(),
       ).thenAnswer((invocation) => right(listStream));
@@ -30,7 +30,7 @@ void main() {
       expect(_result.fold((l) => l, (r) => r), isA<List<Item>>());
     });
 
-    test('Deve retornar um erro ao trazer os items do Firebase', () async* {
+    test('Should return an error when get item of Firebase', () async* {
       when(
         () => getItemRepository.getItems(),
       ).thenAnswer((invocation) => left(NoDataFound()));

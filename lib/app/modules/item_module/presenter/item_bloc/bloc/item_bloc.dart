@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../domain/usecases/add_item_usecase.dart';
-import '../../../domain/usecases/delete_item_usecase.dart';
-import '../../../domain/usecases/get_item_usecase.dart';
-import '../../../domain/usecases/update_item_usecase.dart';
+import '../../../domain/usecases/item_usecases/add_item_usecase.dart';
+import '../../../domain/usecases/item_usecases/delete_item_usecase.dart';
+import '../../../domain/usecases/item_usecases/get_item_usecase.dart';
+import '../../../domain/usecases/item_usecases/update_item_usecase.dart';
 import '../bloc_events/item_bloc_events.dart';
 import '../bloc_states/bloc_states.dart';
 

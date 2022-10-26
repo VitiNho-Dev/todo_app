@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/item_entity.dart';
 import '../../domain/errors/items_failures.dart';
-import '../../domain/repositories/get_item_repository.dart';
+import '../../domain/repositories/item_repositories/get_item_repository.dart';
 import '../datasources/get_item_datasource.dart';
 
 class GetItemRepositoryImpl implements GetItemRepository {

@@ -1,4 +1,4 @@
-import 'package:app_todo/app/modules/item_module/domain/repositories/add_item_repository.dart';
+import 'package:app_todo/app/modules/item_module/domain/repositories/item_repositories/add_item_repository.dart';
 import 'package:app_todo/app/modules/item_module/infra/datasources/add_item_datasource.dart';
 import 'package:app_todo/app/modules/item_module/infra/repositories/add_item_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,12 +7,12 @@ import 'package:mocktail/mocktail.dart';
 class AddItemDatasourceMock extends Mock implements AddItemDatasource {}
 
 void main() {
-  late AddItemDatasource _addItemDatasource;
-  late AddItemRepository _addItemRepository;
+  late AddItemDatasource addItemDatasource;
+  late AddItemRepository addItemRepository;
 
   setUpAll(() async {
-    _addItemDatasource = AddItemDatasourceMock();
-    _addItemRepository = AddItemRepositoryImpl(_addItemDatasource);
+    addItemDatasource = AddItemDatasourceMock();
+    addItemRepository = AddItemRepositoryImpl(addItemDatasource);
   });
 
   group('Add Item Repository test', () {

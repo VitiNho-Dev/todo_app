@@ -3,7 +3,6 @@ import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dar
 Stream<List<Item>> listStream = [
   Item(
     title: 'Item-1',
-    check: false,
     id: '',
     createAt: DateTime.now(),
   ),

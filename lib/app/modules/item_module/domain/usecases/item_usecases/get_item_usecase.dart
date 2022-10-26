@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../entities/item_entity.dart';
-import '../errors/items_failures.dart';
-import '../repositories/get_item_repository.dart';
+import '../../entities/item_entity.dart';
+import '../../errors/items_failures.dart';
+import '../../repositories/item_repositories/get_item_repository.dart';
 
 abstract class GetItemUsecase {
   Either<Failures, Stream<List<Item>>> call();
