@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../../utils/list_items.dart';
+import '../../../../../../utils/items.dart';
 
 class GetItemRepositoryMock extends Mock implements GetItemRepository {}
 
@@ -23,7 +23,7 @@ void main() {
     test('Should return an item of Firebase', () async* {
       when(
         () => getItemRepository.getItems(),
-      ).thenAnswer((invocation) => right(listStream));
+      ).thenAnswer((invocation) => right(items));
 
       final _result = getItemUsecase();
 

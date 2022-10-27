@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../domain/entities/item_entity.dart';
-import '../../infra/datasources/delete_item_datasource.dart';
+import '../../../domain/entities/item_entity.dart';
+import '../../../infra/datasources/item_datasources/delete_item_datasource.dart';
 
 class DeleteItemDatasourceImpl implements DeleteItemDatasource {
   final FirebaseFirestore _firebaseFirestore;

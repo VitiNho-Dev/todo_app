@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../domain/entities/item_entity.dart';
-import '../../infra/datasources/add_item_datasource.dart';
-import '../mapper/todo_mapper.dart';
+import '../../../domain/entities/item_entity.dart';
+import '../../../infra/datasources/item_datasources/add_item_datasource.dart';
+import '../../mapper/todo_mapper.dart';
 
 class AddItemDatasourceImpl implements AddItemDatasource {
   final FirebaseFirestore _firebaseFirestore;

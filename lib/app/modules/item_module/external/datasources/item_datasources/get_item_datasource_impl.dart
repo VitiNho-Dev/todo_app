@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/item_entity.dart';
-import '../../infra/datasources/get_item_datasource.dart';
-import '../mapper/todo_mapper.dart';
+import '../../../domain/entities/item_entity.dart';
+import '../../../infra/datasources/item_datasources/get_item_datasource.dart';
+import '../../mapper/todo_mapper.dart';
 
 class GetItemDatasourceImpl implements GetItemDatasource {
   final FirebaseFirestore _firebaseFirestore;
