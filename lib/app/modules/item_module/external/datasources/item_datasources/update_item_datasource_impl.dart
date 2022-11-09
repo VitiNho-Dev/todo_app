@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/item_entity.dart';
 import '../../../infra/datasources/item_datasources/update_item_datasource.dart';
-import '../../mapper/todo_mapper.dart';
+import '../../mapper/item_mapper.dart';
 
 class UpdateItemDatasourceImpl implements UpdateItemDatasource {
   final FirebaseFirestore _firebaseFirestore;
@@ -13,9 +13,11 @@ class UpdateItemDatasourceImpl implements UpdateItemDatasource {
   @override
   Future<Unit> updateItem(Item item) async {
     await _firebaseFirestore
+        .collection('Lists')
+        .doc('Xgzz71T9nAYkAVgmPQXc')
         .collection('Items')
         .doc(item.id)
-        .update(TodoMapper.toJson(item));
+        .update(ItemMapper.toJson(item));
     return unit;
   }
 }

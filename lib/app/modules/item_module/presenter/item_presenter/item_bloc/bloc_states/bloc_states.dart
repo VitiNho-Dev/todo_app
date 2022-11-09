@@ -1,4 +1,4 @@
-import '../../../domain/entities/item_entity.dart';
+import '../../../../domain/entities/item_entity.dart';
 
 abstract class ItemBlocState {}
 

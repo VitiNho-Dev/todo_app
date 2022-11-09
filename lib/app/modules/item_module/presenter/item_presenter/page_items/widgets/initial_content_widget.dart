@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../theme/app_text_style.dart';
+import '../../../../../../theme/app_text_style.dart';
 
 class InitialContent extends StatelessWidget {
   const InitialContent({Key? key}) : super(key: key);

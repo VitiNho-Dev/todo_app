@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../modules/item_module/presenter/page_todo/widgets/custom_text_button_widget.dart';
+import '../../modules/item_module/presenter/item_presenter/page_items/widgets/custom_text_button_widget.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text_style.dart';
 

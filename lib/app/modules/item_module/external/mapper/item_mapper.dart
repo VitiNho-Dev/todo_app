@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../domain/entities/item_entity.dart';
 
-class TodoMapper {
+class ItemMapper {
   static Map<String, dynamic> toJson(Item item) {
     return {
       'title': item.title,
