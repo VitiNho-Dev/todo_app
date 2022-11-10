@@ -51,4 +51,10 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.bold,
   );
+
+  static final cardTextButton = GoogleFonts.ubuntu(
+    color: AppColors.primaryColor,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 }

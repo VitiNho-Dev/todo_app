@@ -10,6 +10,7 @@ import '../../../../../theme/app_text_style.dart';
 import '../../item_presenter/page_items/widgets/initial_content_widget.dart';
 import '../lists_bloc/bloc/lists_bloc.dart';
 import '../lists_bloc/bloc_states/lists_bloc_states.dart';
+import 'components/card_list_widget.dart';
 
 class PageLists extends StatefulWidget {
   const PageLists({Key? key}) : super(key: key);
@@ -65,13 +66,14 @@ class _PageListsState extends State<PageLists> {
                     child: ListView.builder(
                       itemCount: result.length,
                       itemBuilder: (context, index) {
-                        return Text(result[index].name);
+                        var data = result[index];
+                        return CardListWidget(
+                          name: data.name,
+                          description: data.description,
+                          onTap: () {},
+                        );
                       },
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => Modular.to.pushNamed('/Items'),
-                    child: const Text('Items'),
                   ),
                 ],
               ),
