@@ -11,7 +11,7 @@ class UpdateItemRepositoryMock extends Mock implements UpdateItemRepository {}
 void main() {
   late UpdateItemRepository updateItemRepository;
   late UpdateItemUsecase updateItemUsecase;
-  final _item = Item(
+  final item = Item(
     title: 'Item teste',
     id: '123',
     createAt: DateTime.now(),
@@ -20,7 +20,7 @@ void main() {
   setUpAll(() async {
     updateItemRepository = UpdateItemRepositoryMock();
     updateItemUsecase = UpdateItemUsecaseImpl(updateItemRepository);
-    registerFallbackValue(_item);
+    registerFallbackValue(item);
   });
 
   group('Update Item Usecase test:', () {
@@ -29,9 +29,9 @@ void main() {
         () => updateItemRepository.updateItem(any()),
       ).thenAnswer((invocation) async => right(unit));
 
-      final _result = await updateItemUsecase(_item);
+      final result = await updateItemUsecase(item);
 
-      expect(_result.fold((l) => l, (r) => r), isA<Unit>());
+      expect(result.fold((l) => l, (r) => r), isA<Unit>());
     });
 
     test('Should return on error when update an item of Firebase', () async {
@@ -39,9 +39,9 @@ void main() {
         () => updateItemRepository.updateItem(any()),
       ).thenAnswer((invocation) async => left(NoDataFound()));
 
-      final _result = await updateItemUsecase(_item);
+      final result = await updateItemUsecase(item);
 
-      expect(_result.fold((l) => l, (r) => r), isA<Failures>());
+      expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });
   });
 }

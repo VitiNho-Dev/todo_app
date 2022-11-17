@@ -29,9 +29,9 @@ void main() {
         () => addItemRepository.addItem(any()),
       ).thenAnswer((invocation) async => right(unit));
 
-      final _result = await addItemUsecase(item);
+      final result = await addItemUsecase(item);
 
-      expect(_result.fold((l) => l, (r) => r), isA<Unit>());
+      expect(result.fold((l) => l, (r) => r), isA<Unit>());
     });
 
     test('Should return an error when add an item in Firebase', () async {
@@ -39,9 +39,9 @@ void main() {
         () => addItemRepository.addItem(any()),
       ).thenAnswer((invocation) async => left(NoDataFound()));
 
-      final _result = await addItemUsecase(item);
+      final result = await addItemUsecase(item);
 
-      expect(_result.fold((l) => l, (r) => r), isA<Failures>());
+      expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });
   });
 }

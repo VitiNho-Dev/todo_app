@@ -1,4 +1,3 @@
-import '../../../../domain/entities/item_entity.dart';
 import '../../../../domain/entities/list_entity.dart';
 
 abstract class ListsBlocState {}

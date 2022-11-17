@@ -1,5 +1,3 @@
-import 'item_entity.dart';
-
 class ListItems {
   final String id;
   final String name;

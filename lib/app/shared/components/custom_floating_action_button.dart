@@ -13,6 +13,7 @@ class CustomFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      onPressed: onPressed,
       child: Container(
         width: 60,
         height: 60,
@@ -22,7 +23,6 @@ class CustomFloatingActionButton extends StatelessWidget {
         ),
         child: const Icon(Icons.add),
       ),
-      onPressed: onPressed,
     );
   }
 }

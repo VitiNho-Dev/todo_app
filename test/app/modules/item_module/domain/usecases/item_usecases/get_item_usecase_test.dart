@@ -25,9 +25,9 @@ void main() {
         () => getItemRepository.getItems(),
       ).thenAnswer((invocation) => right(items));
 
-      final _result = getItemUsecase();
+      final result = getItemUsecase();
 
-      expect(_result.fold((l) => l, (r) => r), isA<List<Item>>());
+      expect(result.fold((l) => l, (r) => r), isA<List<Item>>());
     });
 
     test('Should return an error when get item of Firebase', () async* {
@@ -35,9 +35,9 @@ void main() {
         () => getItemRepository.getItems(),
       ).thenAnswer((invocation) => left(NoDataFound()));
 
-      final _result = getItemUsecase();
+      final result = getItemUsecase();
 
-      expect(_result.fold((l) => l, (r) => r), isA<Failures>());
+      expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });
   });
 }

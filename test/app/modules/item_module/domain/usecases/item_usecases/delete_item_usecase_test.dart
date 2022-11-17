@@ -29,9 +29,9 @@ void main() {
         () => deleteItemRepository.deleteItem(any()),
       ).thenAnswer((invocation) async => right(unit));
 
-      final _result = await deleteItemUsecase(item);
+      final result = await deleteItemUsecase(item);
 
-      expect(_result.fold((l) => l, (r) => r), isA<Unit>());
+      expect(result.fold((l) => l, (r) => r), isA<Unit>());
     });
 
     test('Should return on error when delete an item on Firebase', () async {
@@ -39,9 +39,9 @@ void main() {
         () => deleteItemRepository.deleteItem(any()),
       ).thenAnswer((invocation) async => left(NoDataFound()));
 
-      final _result = await deleteItemUsecase(item);
+      final result = await deleteItemUsecase(item);
 
-      expect(_result.fold((l) => l, (r) => r), isA<Failures>());
+      expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });
   });
 }

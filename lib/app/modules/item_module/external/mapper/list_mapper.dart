@@ -1,4 +1,3 @@
-import 'package:app_todo/app/modules/item_module/external/mapper/item_mapper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../domain/entities/list_entity.dart';

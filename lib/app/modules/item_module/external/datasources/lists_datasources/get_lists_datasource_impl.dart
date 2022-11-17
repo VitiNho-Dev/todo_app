@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../domain/entities/item_entity.dart';
 import '../../../domain/entities/list_entity.dart';
 import '../../../infra/datasources/lists_datasources/get_lists_datasource.dart';
 import '../../mapper/list_mapper.dart';
