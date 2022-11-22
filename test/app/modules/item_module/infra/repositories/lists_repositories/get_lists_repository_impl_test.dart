@@ -24,7 +24,7 @@ void main() {
       when(
         () => datasource.getLists(),
       ).thenAnswer(
-        (invocation) => lists,
+        (invocation) => listSnapshot,
       );
 
       final result = repository.getLists();
