@@ -1,8 +1,8 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../domain/entities/list_entity.dart';
 import '../../../infra/datasources/lists_datasources/get_lists_datasource.dart';
-import '../../mapper/list_mapper.dart';
 
 class GetListsDatasourceImpl implements GetListsDatasource {
   final FirebaseFirestore _firebaseFirestore;
@@ -10,15 +10,16 @@ class GetListsDatasourceImpl implements GetListsDatasource {
   GetListsDatasourceImpl(this._firebaseFirestore);
 
   @override
-  Stream<List<ListItems>> getLists() {
-    return _firebaseFirestore
-        .collection('Lists')
-        .orderBy('create_at', descending: false)
-        .snapshots()
-        .map((query) {
-      return query.docs.map((doc) {
-        return ListsMapper.fromDocument(doc);
-      }).toList();
-    });
+  Stream<QuerySnapshot<Map<String, dynamic>>> getLists() {
+    try {
+      final snapshot = _firebaseFirestore
+          .collection('Lists')
+          .orderBy('create_at', descending: false)
+          .snapshots();
+      return snapshot;
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
   }
 }

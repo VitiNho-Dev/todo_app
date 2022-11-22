@@ -102,7 +102,7 @@ class _PageListsState extends State<PageLists> {
                     bottom: MediaQuery.of(context).viewInsets.bottom,
                   ),
                   child: CustomShowBottomSheetWidget(
-                    text: 'Adicione um item na sua lista',
+                    text: 'Adicione uma nova lista',
                     controller: controllerTitle,
                     addItem: () {
                       controllerTitle.clear();

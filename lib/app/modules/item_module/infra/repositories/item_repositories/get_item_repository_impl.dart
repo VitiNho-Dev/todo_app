@@ -6,6 +6,7 @@ import '../../../domain/entities/item_entity.dart';
 import '../../../domain/errors/items_failures.dart';
 import '../../../domain/repositories/item_repositories/get_item_repository.dart';
 import '../../datasources/item_datasources/get_item_datasource.dart';
+import '../../mapper/item_mapper.dart';
 
 class GetItemRepositoryImpl implements GetItemRepository {
   final GetItemDatasource _getItemDatasource;
@@ -15,8 +16,17 @@ class GetItemRepositoryImpl implements GetItemRepository {
   @override
   Either<Failures, Stream<List<Item>>> getItems() {
     try {
-      var result = _getItemDatasource.getItems();
-      return Right(result);
+      final result = _getItemDatasource.getItems();
+      final listItems = result.map(
+        (query) {
+          return query.docs.map(
+            (doc) {
+              return ItemMapper.fromDocument(doc);
+            },
+          ).toList();
+        },
+      );
+      return Right(listItems);
     } on Failures catch (e) {
       return Left(e);
     } catch (e, stack) {

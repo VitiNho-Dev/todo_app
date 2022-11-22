@@ -1,5 +1,5 @@
-import '../../../domain/entities/list_entity.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class GetListsDatasource {
-  Stream<List<ListItems>> getLists();
+  Stream<QuerySnapshot<Map<String, dynamic>>> getLists();
 }

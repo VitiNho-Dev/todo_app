@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/item_entity.dart';
 import '../../../infra/datasources/item_datasources/add_item_datasource.dart';
-import '../../mapper/item_mapper.dart';
+import '../../../infra/mapper/item_mapper.dart';
 
 class AddItemDatasourceImpl implements AddItemDatasource {
   final FirebaseFirestore _firebaseFirestore;

@@ -1,6 +1,6 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/list_entity.dart';
 import 'package:app_todo/app/modules/item_module/external/datasources/lists_datasources/get_lists_datasource_impl.dart';
-import 'package:app_todo/app/modules/item_module/external/mapper/list_mapper.dart';
+import 'package:app_todo/app/modules/item_module/infra/mapper/list_mapper.dart';
 import 'package:app_todo/app/modules/item_module/infra/datasources/lists_datasources/get_lists_datasource.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
