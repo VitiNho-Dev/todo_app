@@ -2,7 +2,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../entities/item_entity.dart';
-import '../../errors/items_failures.dart';
+import '../../errors/failures.dart';
 import '../../repositories/item_repositories/add_item_repository.dart';
 
 abstract class AddItemUsecase {

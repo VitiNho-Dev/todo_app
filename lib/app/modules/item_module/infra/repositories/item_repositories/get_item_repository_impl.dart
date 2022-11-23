@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/item_entity.dart';
-import '../../../domain/errors/items_failures.dart';
+import '../../../domain/errors/failures.dart';
 import '../../../domain/repositories/item_repositories/get_item_repository.dart';
 import '../../datasources/item_datasources/get_item_datasource.dart';
 import '../../mapper/item_mapper.dart';
@@ -29,9 +29,14 @@ class GetItemRepositoryImpl implements GetItemRepository {
       return Right(listItems);
     } on Failures catch (e) {
       return Left(e);
-    } catch (e, stack) {
+    } catch (error, stack) {
       debugPrintStack(stackTrace: stack);
-      throw Left(InvalidError());
+      throw Left(
+        InvalidData(
+          message: error.toString(),
+          stackTrace: stack,
+        ),
+      );
     }
   }
 }

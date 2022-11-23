@@ -1,5 +1,5 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dart';
-import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
+import 'package:app_todo/app/modules/item_module/domain/errors/failures.dart';
 import 'package:app_todo/app/modules/item_module/domain/repositories/item_repositories/delete_item_repository.dart';
 import 'package:app_todo/app/modules/item_module/domain/usecases/item_usecases/delete_item_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -37,7 +37,7 @@ void main() {
     test('Should return on error when delete an item on Firebase', () async {
       when(
         () => deleteItemRepository.deleteItem(any()),
-      ).thenAnswer((invocation) async => left(NoDataFound()));
+      ).thenAnswer((invocation) async => left(const NoDataFound()));
 
       final result = await deleteItemUsecase(item);
 

@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/item_entity.dart';

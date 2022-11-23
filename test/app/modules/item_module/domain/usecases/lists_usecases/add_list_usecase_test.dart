@@ -1,5 +1,5 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/list_entity.dart';
-import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
+import 'package:app_todo/app/modules/item_module/domain/errors/failures.dart';
 import 'package:app_todo/app/modules/item_module/domain/repositories/lists_repositories/add_list_repository.dart';
 import 'package:app_todo/app/modules/item_module/domain/usecases/lists_usecases/add_list_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -42,7 +42,7 @@ void main() {
     test('Should a Failure', () async {
       when(
         () => addListRepository.addList(any()),
-      ).thenAnswer((invocation) async => Left(NoDataFound()));
+      ).thenAnswer((invocation) async => const Left(NoDataFound()));
 
       final result = await addListUsecase(listItems);
 

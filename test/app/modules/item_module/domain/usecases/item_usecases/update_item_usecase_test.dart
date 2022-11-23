@@ -1,5 +1,5 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dart';
-import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
+import 'package:app_todo/app/modules/item_module/domain/errors/failures.dart';
 import 'package:app_todo/app/modules/item_module/domain/repositories/item_repositories/update_item_repository.dart';
 import 'package:app_todo/app/modules/item_module/domain/usecases/item_usecases/update_item_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -37,7 +37,7 @@ void main() {
     test('Should return on error when update an item of Firebase', () async {
       when(
         () => updateItemRepository.updateItem(any()),
-      ).thenAnswer((invocation) async => left(NoDataFound()));
+      ).thenAnswer((invocation) async => left(const NoDataFound()));
 
       final result = await updateItemUsecase(item);
 

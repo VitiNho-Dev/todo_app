@@ -1,5 +1,5 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/item_entity.dart';
-import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
+import 'package:app_todo/app/modules/item_module/domain/errors/failures.dart';
 import 'package:app_todo/app/modules/item_module/domain/repositories/item_repositories/get_item_repository.dart';
 import 'package:app_todo/app/modules/item_module/domain/usecases/item_usecases/get_item_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -33,7 +33,7 @@ void main() {
     test('Should return an error when get item of Firebase', () async* {
       when(
         () => getItemRepository.getItems(),
-      ).thenAnswer((invocation) => left(NoDataFound()));
+      ).thenAnswer((invocation) => left(const NoDataFound()));
 
       final result = getItemUsecase();
 

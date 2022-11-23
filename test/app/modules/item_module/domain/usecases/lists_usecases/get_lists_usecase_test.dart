@@ -1,5 +1,5 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/list_entity.dart';
-import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
+import 'package:app_todo/app/modules/item_module/domain/errors/failures.dart';
 import 'package:app_todo/app/modules/item_module/domain/repositories/lists_repositories/get_lists_repository.dart';
 import 'package:app_todo/app/modules/item_module/domain/usecases/lists_usecases/get_lists_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -37,7 +37,7 @@ void main() {
       when(
         () => repository.getLists(),
       ).thenAnswer(
-        (invocation) => left(NoDataFound()),
+        (invocation) => left(const NoDataFound()),
       );
 
       final result = usecase();

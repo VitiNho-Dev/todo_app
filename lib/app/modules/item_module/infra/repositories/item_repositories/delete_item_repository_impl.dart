@@ -3,7 +3,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/item_entity.dart';
-import '../../../domain/errors/items_failures.dart';
+import '../../../domain/errors/failures.dart';
 import '../../../domain/repositories/item_repositories/delete_item_repository.dart';
 import '../../datasources/item_datasources/delete_item_datasource.dart';
 

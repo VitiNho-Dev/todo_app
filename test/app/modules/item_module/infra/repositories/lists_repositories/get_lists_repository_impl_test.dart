@@ -1,5 +1,5 @@
 import 'package:app_todo/app/modules/item_module/domain/entities/list_entity.dart';
-import 'package:app_todo/app/modules/item_module/domain/errors/items_failures.dart';
+import 'package:app_todo/app/modules/item_module/domain/errors/failures.dart';
 import 'package:app_todo/app/modules/item_module/domain/repositories/lists_repositories/get_lists_repository.dart';
 import 'package:app_todo/app/modules/item_module/infra/datasources/lists_datasources/get_lists_datasource.dart';
 import 'package:app_todo/app/modules/item_module/infra/repositories/lists_repositories/get_lists_repository_impl.dart';
@@ -37,7 +37,7 @@ void main() {
       when(
         () => datasource.getLists(),
       ).thenThrow(
-        (invocation) => InvalidError(),
+        (invocation) => const InvalidData(),
       );
 
       final result = repository.getLists();
