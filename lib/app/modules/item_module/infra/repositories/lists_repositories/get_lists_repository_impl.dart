@@ -1,12 +1,11 @@
-// ignore: depend_on_referenced_packages
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../domain/entities/list_entity.dart';
 import '../../../domain/errors/failures.dart';
 import '../../../domain/repositories/lists_repositories/get_lists_repository.dart';
+import '../../../external/mapper/list_mapper.dart';
 import '../../datasources/lists_datasources/get_lists_datasource.dart';
-import '../../mapper/list_mapper.dart';
 
 class GetListsRepositoryImpl implements GetListsRepository {
   final GetListsDatasource _datasource;

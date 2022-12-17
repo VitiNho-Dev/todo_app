@@ -12,6 +12,11 @@ class AddListRepositoryImpl implements AddListRepository {
 
   @override
   Future<Either<Failures, Unit>> addList(ListItems listItems) async {
-    return listDatasource.addLists(listItems);
+    try {
+      await listDatasource.addLists(listItems);
+      return const Right(unit);
+    } on Failures catch (e) {
+      return Left(e);
+    }
   }
 }

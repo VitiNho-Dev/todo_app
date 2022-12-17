@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../domain/usecases/lists_usecases/add_list_usecase.dart';
+import '../../../../domain/usecases/lists_usecases/delete_list_usecase.dart';
 import '../../../../domain/usecases/lists_usecases/get_lists_usecase.dart';
 import '../bloc_events/lists_bloc_events.dart';
 import '../bloc_states/lists_bloc_states.dart';
@@ -9,14 +11,14 @@ import '../bloc_states/lists_bloc_states.dart';
 class ListsBloc extends Bloc<ListsBlocEvent, ListsBlocState>
     implements Disposable {
   late StreamSubscription streamSubscription;
-  // final AddItemUsecase addItemUsecase;
-  // final DeleteItemUsecase deleteItemUsecase;
+  final AddListUsecase addListUsecase;
+  final DeleteListUsecase deleteItemUsecase;
   final GetListsUsecase getListsUsecase;
   // final UpdateItemUsecase updateItemUsecase;
 
   void initState() {
     getListsUsecase().fold(
-      (l) => ListsErrorBlocState(l.toString()),
+      (l) => ListErrorBlocState(l.toString()),
       (r) {
         streamSubscription = r.listen((event) {
           add(RefreshListsBlocEvent(event));
@@ -26,8 +28,8 @@ class ListsBloc extends Bloc<ListsBlocEvent, ListsBlocState>
   }
 
   ListsBloc(
-    // this.addItemUsecase,
-    // this.deleteItemUsecase,
+    this.addListUsecase,
+    this.deleteItemUsecase,
     this.getListsUsecase,
     // this.updateItemUsecase,
   ) : super(ListsInitialBlocState()) {
@@ -40,16 +42,16 @@ class ListsBloc extends Bloc<ListsBlocEvent, ListsBlocState>
       },
     );
 
-    //   on<AddListsBlocEvent>(
-    //     (event, emit) async {
-    //       emit(LoadingBlocState());
-    //       final result = await addItemUsecase(event.item);
-    //       result.fold(
-    //         (l) => emit(ErrorBlocState('Falhou')),
-    //         (r) => r,
-    //       );
-    //     },
-    //   );
+    on<AddListsBlocEvent>(
+      (event, emit) async {
+        emit(ListsLoadingBlocState());
+        final result = await addListUsecase(event.listItems);
+        result.fold(
+          (l) => emit(ListErrorBlocState('Falhou')),
+          (r) => r,
+        );
+      },
+    );
 
     //   on<UpdateItemBlocEvent>(
     //     (event, emit) async {
@@ -61,15 +63,15 @@ class ListsBloc extends Bloc<ListsBlocEvent, ListsBlocState>
     //     },
     //   );
 
-    //   on<DeleteItemBlocEvent>(
-    //     (event, emit) async {
-    //       final result = await deleteItemUsecase(event.item);
-    //       result.fold(
-    //         (l) => emit(ErrorBlocState('Falhou')),
-    //         (r) => r,
-    //       );
-    //     },
-    //   );
+    on<DeleteListBlocEvent>(
+      (event, emit) async {
+        final result = await deleteItemUsecase(event.listItems);
+        result.fold(
+          (l) => emit(ListErrorBlocState('Falhou')),
+          (r) => r,
+        );
+      },
+    );
   }
 
   @override

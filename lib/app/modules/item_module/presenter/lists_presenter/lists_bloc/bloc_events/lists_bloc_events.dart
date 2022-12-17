@@ -20,8 +20,8 @@ class UpdateListsBlocEvent extends ListsBlocEvent {
   UpdateListsBlocEvent(this.listItems);
 }
 
-class DeleteListsBlocEvent extends ListsBlocEvent {
+class DeleteListBlocEvent extends ListsBlocEvent {
   final ListItems listItems;
 
-  DeleteListsBlocEvent(this.listItems);
+  DeleteListBlocEvent(this.listItems);
 }

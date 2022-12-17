@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/item_entity.dart';
@@ -12,9 +11,9 @@ class AddItemRepositoryImpl implements AddItemRepository {
   AddItemRepositoryImpl(this._addItemDatasource);
 
   @override
-  Future<Either<Failures, Unit>> addItem(Item item) async {
+  Future<Either<Failures, Unit>> addItem(Item item, String idList) async {
     try {
-      await _addItemDatasource.addItem(item);
+      await _addItemDatasource.addItem(item, idList);
       return const Right(unit);
     } on Failures catch (e) {
       return Left(e);

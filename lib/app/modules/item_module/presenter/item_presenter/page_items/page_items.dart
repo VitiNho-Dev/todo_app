@@ -15,7 +15,8 @@ import 'widgets/custom_list_items.dart';
 import 'widgets/initial_content_widget.dart';
 
 class PageItems extends StatefulWidget {
-  const PageItems({Key? key}) : super(key: key);
+  final String idList;
+  const PageItems({Key? key, required this.idList}) : super(key: key);
 
   @override
   State<PageItems> createState() => _PageItemsState();
@@ -28,7 +29,14 @@ class _PageItemsState extends State<PageItems> {
   @override
   void initState() {
     super.initState();
+    bloc.id = widget.idList;
     bloc.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -84,7 +92,10 @@ class _PageItemsState extends State<PageItems> {
                           key: ValueKey<Item>(result[index]),
                           onDismissed: (DismissDirection direction) {
                             bloc.add(
-                              DeleteItemBlocEvent(result[index]),
+                              DeleteItemBlocEvent(
+                                result[index],
+                                widget.idList,
+                              ),
                             );
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -94,12 +105,12 @@ class _PageItemsState extends State<PageItems> {
                           },
                           child: CustomListItems(
                             onTap: () {
-                              //item.check = !item.check;
                               bloc.add(
                                 UpdateItemBlocEvent(
                                   Item(
                                     title: item.title,
-                                    check: item.check,
+                                    check:
+                                        item.copyWith(check: !item.check).check,
                                     id: item.id,
                                     createAt: item.createAt,
                                   ),
@@ -151,9 +162,11 @@ class _PageItemsState extends State<PageItems> {
                             id: '',
                             createAt: DateTime.now(),
                           ),
+                          widget.idList,
                         ),
                       );
                       controllerTitle.clear();
+                      Modular.to.pop();
                     },
                   ),
                 );

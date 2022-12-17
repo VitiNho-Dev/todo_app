@@ -10,11 +10,11 @@ class GetItemDatasourceImpl implements GetItemDatasource {
   GetItemDatasourceImpl(this._firebaseFirestore);
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getItems() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getItems(String idList) {
     try {
       final snapshot = _firebaseFirestore
           .collection('Lists')
-          .doc('Xgzz71T9nAYkAVgmPQXc')
+          .doc(idList)
           .collection('Items')
           .orderBy('create_at', descending: false)
           .snapshots();

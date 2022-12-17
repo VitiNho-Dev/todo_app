@@ -13,29 +13,31 @@ class GetItemRepositoryMock extends Mock implements GetItemRepository {}
 void main() {
   late GetItemRepository getItemRepository;
   late GetItemUsecase getItemUsecase;
+  const idList = '';
 
   setUpAll(() async {
     getItemRepository = GetItemRepositoryMock();
     getItemUsecase = GetItemUsecaseImpl(getItemRepository);
+    registerFallbackValue(idList);
   });
 
   group('Get Item Usecase test:', () {
     test('Should return an item of Firebase', () async* {
       when(
-        () => getItemRepository.getItems(),
+        () => getItemRepository.getItems(idList),
       ).thenAnswer((invocation) => right(items));
 
-      final result = getItemUsecase();
+      final result = getItemUsecase(idList);
 
       expect(result.fold((l) => l, (r) => r), isA<List<Item>>());
     });
 
     test('Should return an error when get item of Firebase', () async* {
       when(
-        () => getItemRepository.getItems(),
+        () => getItemRepository.getItems(idList),
       ).thenAnswer((invocation) => left(const NoDataFound()));
 
-      final result = getItemUsecase();
+      final result = getItemUsecase(idList);
 
       expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });

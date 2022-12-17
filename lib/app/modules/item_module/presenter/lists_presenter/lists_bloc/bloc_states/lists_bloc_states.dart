@@ -12,8 +12,8 @@ class ListsSuccessBlocState extends ListsBlocState {
 
 class ListsLoadingBlocState extends ListsBlocState {}
 
-class ListsErrorBlocState extends ListsBlocState {
+class ListErrorBlocState extends ListsBlocState {
   final String message;
 
-  ListsErrorBlocState(this.message);
+  ListErrorBlocState(this.message);
 }

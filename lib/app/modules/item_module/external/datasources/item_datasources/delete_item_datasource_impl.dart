@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-// ignore: depend_on_referenced_packages
+
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/item_entity.dart';
@@ -11,10 +11,10 @@ class DeleteItemDatasourceImpl implements DeleteItemDatasource {
   DeleteItemDatasourceImpl(this._firebaseFirestore);
 
   @override
-  Future<Unit> deleteItem(Item item) async {
+  Future<Unit> deleteItem(Item item, String idList) async {
     await _firebaseFirestore
         .collection('Lists')
-        .doc('Xgzz71T9nAYkAVgmPQXc')
+        .doc(idList)
         .collection('Items')
         .doc(item.id)
         .delete();

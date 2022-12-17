@@ -16,30 +16,32 @@ void main() {
     title: 'Item teste',
     createAt: DateTime.now(),
   );
+  const id = '';
 
   setUpAll(() async {
     addItemRepository = AddItemRepositoryMock();
     addItemUsecase = AddItemUsecaseImpl(addItemRepository);
     registerFallbackValue(item);
+    registerFallbackValue(id);
   });
 
   group('Add Item Usecase test:', () {
     test('Should add an item in Firebase', () async {
       when(
-        () => addItemRepository.addItem(any()),
+        () => addItemRepository.addItem(any(), any()),
       ).thenAnswer((invocation) async => right(unit));
 
-      final result = await addItemUsecase(item);
+      final result = await addItemUsecase(item, id);
 
       expect(result.fold((l) => l, (r) => r), isA<Unit>());
     });
 
     test('Should return an error when add an item in Firebase', () async {
       when(
-        () => addItemRepository.addItem(any()),
+        () => addItemRepository.addItem(any(), any()),
       ).thenAnswer((invocation) async => left(const NoDataFound()));
 
-      final result = await addItemUsecase(item);
+      final result = await addItemUsecase(item, id);
 
       expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });

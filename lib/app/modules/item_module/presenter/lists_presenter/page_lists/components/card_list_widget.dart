@@ -6,11 +6,13 @@ class CardListWidget extends StatelessWidget {
   final String name;
   final String description;
   final void Function()? onTap;
+  final void Function()? onPressed;
   const CardListWidget({
     super.key,
     required this.name,
     required this.description,
     required this.onTap,
+    required this.onPressed,
   });
 
   @override
@@ -18,7 +20,7 @@ class CardListWidget extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 4,
-      margin: const EdgeInsets.all(0),
+      margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -31,7 +33,10 @@ class CardListWidget extends StatelessWidget {
                   name,
                   style: AppTextStyle.titleBodyInitialState,
                 ),
-                const Icon(Icons.delete_outline),
+                InkWell(
+                  onTap: onPressed,
+                  child: const Icon(Icons.delete_outline),
+                ),
               ],
             ),
             const SizedBox(

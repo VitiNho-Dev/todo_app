@@ -16,13 +16,14 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
   final DeleteItemUsecase deleteItemUsecase;
   final GetItemUsecase getItemUsecase;
   final UpdateItemUsecase updateItemUsecase;
+  var id = '';
 
   void initState() {
-    getItemUsecase().fold(
+    getItemUsecase(id).fold(
       (l) => ErrorBlocState(l.toString()),
       (r) {
         streamSubscription = r.listen((event) {
-          add(RefreshItemBlocEvent(event));
+          add(RefreshItemBlocEvent(event, id));
         });
       },
     );
@@ -46,7 +47,7 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
     on<AddItemBlocEvent>(
       (event, emit) async {
         emit(LoadingBlocState());
-        final result = await addItemUsecase(event.item);
+        final result = await addItemUsecase(event.item, event.idList);
         result.fold(
           (l) => emit(ErrorBlocState('Falhou')),
           (r) => r,
@@ -66,7 +67,7 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
 
     on<DeleteItemBlocEvent>(
       (event, emit) async {
-        final result = await deleteItemUsecase(event.item);
+        final result = await deleteItemUsecase(event.item, event.idList);
         result.fold(
           (l) => emit(ErrorBlocState('Falhou')),
           (r) => r,

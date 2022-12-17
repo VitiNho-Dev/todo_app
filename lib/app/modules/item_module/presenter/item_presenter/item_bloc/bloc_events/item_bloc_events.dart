@@ -4,14 +4,16 @@ abstract class ItemBlocEvent {}
 
 class RefreshItemBlocEvent extends ItemBlocEvent {
   final List<Item> listItem;
+  final String idList;
 
-  RefreshItemBlocEvent(this.listItem);
+  RefreshItemBlocEvent(this.listItem, this.idList);
 }
 
 class AddItemBlocEvent extends ItemBlocEvent {
   final Item item;
+  final String idList;
 
-  AddItemBlocEvent(this.item);
+  AddItemBlocEvent(this.item, this.idList);
 }
 
 class UpdateItemBlocEvent extends ItemBlocEvent {
@@ -22,6 +24,7 @@ class UpdateItemBlocEvent extends ItemBlocEvent {
 
 class DeleteItemBlocEvent extends ItemBlocEvent {
   final Item item;
+  final String idList;
 
-  DeleteItemBlocEvent(this.item);
+  DeleteItemBlocEvent(this.item, this.idList);
 }
