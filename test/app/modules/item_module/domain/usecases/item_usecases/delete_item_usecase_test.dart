@@ -11,6 +11,7 @@ class DeleteItemRepositoryMock extends Mock implements DeleteItemRepository {}
 void main() {
   late DeleteItemRepository deleteItemRepository;
   late DeleteItemUsecase deleteItemUsecase;
+  const idList = '';
   final item = Item(
     title: 'Item teste',
     id: '123',
@@ -21,25 +22,26 @@ void main() {
     deleteItemRepository = DeleteItemRepositoryMock();
     deleteItemUsecase = DeleteItemUsecaseImpl(deleteItemRepository);
     registerFallbackValue(item);
+    registerFallbackValue(idList);
   });
 
   group('Delete Item Usecase test:', () {
     test('Should delete an item on Firebase', () async {
       when(
-        () => deleteItemRepository.deleteItem(any()),
+        () => deleteItemRepository.deleteItem(any(), any()),
       ).thenAnswer((invocation) async => right(unit));
 
-      final result = await deleteItemUsecase(item);
+      final result = await deleteItemUsecase(item, idList);
 
       expect(result.fold((l) => l, (r) => r), isA<Unit>());
     });
 
     test('Should return on error when delete an item on Firebase', () async {
       when(
-        () => deleteItemRepository.deleteItem(any()),
+        () => deleteItemRepository.deleteItem(any(), any()),
       ).thenAnswer((invocation) async => left(const NoDataFound()));
 
-      final result = await deleteItemUsecase(item);
+      final result = await deleteItemUsecase(item, idList);
 
       expect(result.fold((l) => l, (r) => r), isA<Failures>());
     });
