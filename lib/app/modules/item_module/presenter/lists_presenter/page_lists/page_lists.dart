@@ -23,17 +23,22 @@ class PageLists extends StatefulWidget {
 
 class _PageListsState extends State<PageLists> {
   final bloc = Modular.get<ListsBloc>();
-  final controllerTitle = TextEditingController();
+  late final TextEditingController controllerName;
+  late final TextEditingController controllerDescription;
 
   @override
   void initState() {
     super.initState();
     bloc.initState();
+    controllerName = TextEditingController();
+    controllerDescription = TextEditingController();
   }
 
   @override
   void dispose() {
     bloc.dispose();
+    controllerName.dispose();
+    controllerDescription.dispose();
     super.dispose();
   }
 
@@ -121,19 +126,24 @@ class _PageListsState extends State<PageLists> {
                   ),
                   child: CustomShowBottomSheetWidget(
                     text: 'Adicione uma nova lista',
-                    controller: controllerTitle,
+                    controllerName: controllerName,
+                    controllerDescription: controllerDescription,
+                    hintTextName: 'Nome da Lista',
+                    hintTextDescription: 'Descrição',
+                    visible: true,
                     addItem: () {
                       bloc.add(
                         AddListsBlocEvent(
                           ListItems(
                             id: '',
-                            name: controllerTitle.text,
-                            description: '',
+                            name: controllerName.text,
+                            description: controllerDescription.text,
                             createAt: DateTime.now(),
                           ),
                         ),
                       );
-                      controllerTitle.clear();
+                      controllerName.clear();
+                      controllerDescription.clear();
                       Modular.to.pop();
                     },
                   ),

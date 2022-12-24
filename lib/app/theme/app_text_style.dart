@@ -57,4 +57,11 @@ class AppTextStyle {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+
+  // TODO: finalizar o estilo do hintText
+  static final hintText = GoogleFonts.ubuntu(
+    color: AppColors.textColor,
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+  );
 }

@@ -57,7 +57,7 @@ class ItemBloc extends Bloc<ItemBlocEvent, ItemBlocState>
 
     on<UpdateItemBlocEvent>(
       (event, emit) async {
-        final result = await updateItemUsecase(event.item);
+        final result = await updateItemUsecase(event.item, event.idList);
         result.fold(
           (l) => emit(ErrorBlocState('Falhou')),
           (r) => r,

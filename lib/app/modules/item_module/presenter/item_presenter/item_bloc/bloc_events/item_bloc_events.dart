@@ -18,8 +18,9 @@ class AddItemBlocEvent extends ItemBlocEvent {
 
 class UpdateItemBlocEvent extends ItemBlocEvent {
   final Item item;
+  final String idList;
 
-  UpdateItemBlocEvent(this.item);
+  UpdateItemBlocEvent(this.item, this.idList);
 }
 
 class DeleteItemBlocEvent extends ItemBlocEvent {

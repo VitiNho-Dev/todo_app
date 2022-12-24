@@ -12,10 +12,10 @@ class UpdateItemDatasourceImpl implements UpdateItemDatasource {
   UpdateItemDatasourceImpl(this._firebaseFirestore);
 
   @override
-  Future<Unit> updateItem(Item item) async {
+  Future<Unit> updateItem(Item item, String idList) async {
     await _firebaseFirestore
         .collection('Lists')
-        .doc('Xgzz71T9nAYkAVgmPQXc')
+        .doc(idList)
         .collection('Items')
         .doc(item.id)
         .update(ItemMapper.toJson(item));

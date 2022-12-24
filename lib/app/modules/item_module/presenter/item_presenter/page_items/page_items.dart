@@ -24,18 +24,20 @@ class PageItems extends StatefulWidget {
 
 class _PageItemsState extends State<PageItems> {
   final bloc = Modular.get<ItemBloc>();
-  final controllerTitle = TextEditingController();
+  late final TextEditingController controllerName;
 
   @override
   void initState() {
     super.initState();
     bloc.id = widget.idList;
     bloc.initState();
+    controllerName = TextEditingController();
   }
 
   @override
   void dispose() {
     bloc.dispose();
+    controllerName.dispose();
     super.dispose();
   }
 
@@ -114,6 +116,7 @@ class _PageItemsState extends State<PageItems> {
                                     id: item.id,
                                     createAt: item.createAt,
                                   ),
+                                  widget.idList,
                                 ),
                               );
                             },
@@ -153,19 +156,20 @@ class _PageItemsState extends State<PageItems> {
                   ),
                   child: CustomShowBottomSheetWidget(
                     text: 'Adicione um item na sua lista',
-                    controller: controllerTitle,
+                    controllerName: controllerName,
+                    visible: false,
                     addItem: () {
                       bloc.add(
                         AddItemBlocEvent(
                           Item(
-                            title: controllerTitle.text,
+                            title: controllerName.text,
                             id: '',
                             createAt: DateTime.now(),
                           ),
                           widget.idList,
                         ),
                       );
-                      controllerTitle.clear();
+                      controllerName.clear();
                       Modular.to.pop();
                     },
                   ),

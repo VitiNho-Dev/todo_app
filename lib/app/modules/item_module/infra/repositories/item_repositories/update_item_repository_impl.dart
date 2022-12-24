@@ -11,9 +11,9 @@ class UpdateItemRepositoryImpl implements UpdateItemRepository {
   UpdateItemRepositoryImpl(this._updateItemDatasource);
 
   @override
-  Future<Either<Failures, Unit>> updateItem(Item item) async {
+  Future<Either<Failures, Unit>> updateItem(Item item, String idList) async {
     try {
-      await _updateItemDatasource.updateItem(item);
+      await _updateItemDatasource.updateItem(item, idList);
       return const Right(unit);
     } on Failures catch (e) {
       return Left(e);
