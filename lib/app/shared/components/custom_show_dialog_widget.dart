@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../modules/item_module/presenter/item_presenter/page_items/widgets/custom_text_button_widget.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text_style.dart';
+import 'custom_text_field.dart';
 
 class CustomShowBottomSheetWidget extends StatelessWidget {
   final String text;
@@ -32,21 +33,20 @@ class CustomShowBottomSheetWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(text),
+          Text(
+            text,
+            style: AppTextStyle.titleBody,
+          ),
           const SizedBox(height: 8),
-          TextField(
+          CustomTextField(
             controller: controllerName,
-            decoration: InputDecoration(
-              hintText: hintTextName,
-            ),
+            hintText: hintTextName,
           ),
           Visibility(
             visible: visible,
-            child: TextField(
+            child: CustomTextField(
               controller: controllerDescription,
-              decoration: InputDecoration(
-                hintText: hintTextDescription,
-              ),
+              hintText: hintTextDescription,
             ),
           ),
           const SizedBox(height: 32),
